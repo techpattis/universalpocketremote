@@ -1,94 +1,147 @@
-# PocketRemote
+# Hardware Information
 
-A portable ESP32-based universal infrared remote controller.
+Pocket Remote v1 was designed around inexpensive, reliable and widely available components.
 
-PocketRemote is a compact DIY remote control device that can capture, store, and transmit infrared (IR) signals using an ESP32 microcontroller. It is designed to control different IR-compatible devices in a small and portable form factor.
+---
 
-## Features
+## ESPDuino-32
 
-* ESP32-based control system
-* Infrared signal receiving and transmitting
-* Universal IR remote functionality
-* 2-axis joystick control
-* Portable LiPo battery powered design
-* Built-in charging system
-* Compact custom enclosure
-* 3D printable case support
+Main controller.
 
-## Hardware
+Responsibilities:
 
-### Main Components
+- OLED control
+- IR learning
+- IR transmission
+- EEPROM storage
+- Joystick handling
+- Battery monitoring
 
-* ESPDuino-32 ESP32 WiFi & Bluetooth Development Board
-* KY-005 IR Transmitter Module
-* 38kHz IR Receiver Module
-* 3.7V 950mAh LiPo Battery
-* MCP73831T LiPo Charging Module
-* 2-Axis Joystick Module
-* Mini Illuminated Power Switch
+The firmware is also fully compatible with ESP32-WROOM development boards.
 
-### Passive Components
+---
 
-* 100KΩ 1/4W Resistor
-* 1KΩ 2W Resistor
+## OLED Display
 
-### Wiring Components
+Model
 
-* Male-Male / Female-Female Jumper Wires
-* Female-Male Jumper Wires
+SSD1306
 
-For the complete hardware list, see:
+Resolution
 
-`Hardware/parts-list.md`
+128 × 64
 
-## Software
+Interface
 
-PocketRemote is programmed using:
+I2C
 
-* Arduino IDE
-* ESP32 Arduino Core
+Purpose
 
-## Project Structure
+Displays:
 
+- Menus
+- Button names
+- Battery percentage
+- Settings
+- Learning screens
 
-## How It Works
+---
 
-1. The IR receiver captures signals from existing remote controls.
-2. The ESP32 processes and stores the received IR data.
-3. The joystick is used to navigate and control functions.
-4. The IR transmitter sends commands to compatible devices.
+## IR Receiver
 
-## Power
+38kHz Infrared Receiver Module
 
-PocketRemote uses:
+Purpose
 
-* 3.7V 1S LiPo battery
-* MCP73831T charging circuit
-* On/off power switch
+Receives infrared signals from existing remote controls.
 
-The device can be charged through the built-in LiPo charging system.
+Used only while learning.
 
-## Future Improvements
+---
 
-Planned features:
+## IR Transmitter
 
-* OLED display support
-* Remote profile storage
-* Better user interface
-* More IR protocol support
-* Custom PCB design
-* Smaller enclosure design
+KY-005
 
-## Gallery
+Purpose
 
-(Add project photos here)
+Transmits learned infrared commands.
 
-## License
+---
 
-This project is released under the MIT License.
+## Battery
 
-You are free to use, modify, and share this project with proper credit.
+3.7V
+950mAh
+LiPo
 
-## Author
+Advantages
 
-Created by Hayat.
+- Rechargeable
+- Lightweight
+- High energy density
+- Portable
+
+---
+
+## Charging Circuit
+
+MCP73831
+
+The battery is **never connected directly to USB.**
+
+The MCP73831:
+
+- controls charging current
+- prevents overcharging
+- automatically stops charging at 4.2V
+- protects battery life
+- increases overall safety
+
+This makes the device significantly safer than charging the battery directly.
+
+---
+
+## Joystick
+
+Two-axis analog joystick.
+
+Functions
+
+- Up
+- Down
+- Left
+- Right
+- Push button
+
+Used for complete menu navigation.
+
+---
+
+## Power Switch
+
+Disconnects battery from the system.
+
+No standby current is consumed when switched off.
+
+---
+
+## Storage
+
+ESP32 Preferences library
+
+No SD card required.
+
+All buttons are stored in internal flash memory.
+
+---
+
+## Capacity
+
+Maximum saved buttons
+
+20
+
+Maximum RAW signal length
+
+300 timing values
