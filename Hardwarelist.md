@@ -50,24 +50,6 @@ PocketRemote is programmed using:
 
 ## Project Structure
 
-```
-PocketRemote/
-│
-├── Code/
-│   └── PocketRemote.ino
-│
-├── Hardware/
-│   ├── parts-list.md
-│   └── wiring.md
-│
-├── Images/
-│   └── photos
-│
-├── 3D_Print/
-│   └── enclosure files
-│
-└── README.md
-```
 
 ## How It Works
 
