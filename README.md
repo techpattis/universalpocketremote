@@ -1,124 +1,121 @@
-# PocketRemote
+# Pocket Remote v1
 
-A portable ESP32-based universal infrared remote controller.
+Pocket Remote v1 is an open-source universal infrared remote built around the ESP32 platform.
 
-PocketRemote is a compact DIY remote control device that can capture, store, and transmit infrared (IR) signals using an ESP32 microcontroller. It is designed to control different IR-compatible devices in a small and portable form factor.
+It allows users to learn, store, organize and transmit infrared signals from almost any IR-controlled device while remaining fully portable thanks to its rechargeable Li-Po battery.
 
-## Features
+The project was designed to be inexpensive, easy to build and completely open source.
 
-* ESP32-based control system
-* Infrared signal receiving and transmitting
-* Universal IR remote functionality
-* 2-axis joystick control
-* Portable LiPo battery powered design
-* Built-in charging system
-* Compact custom enclosure
-* 3D printable case support
+---
 
-## Hardware
+# Features
 
-### Main Components
+- Learn almost any IR remote
+- Store up to 20 buttons
+- OLED graphical interface
+- Rechargeable Li-Po battery
+- Battery percentage indicator
+- Delete saved buttons
+- Portable handheld design
+- ESP32 based
+- Open Source (MIT License)
 
-* ESPDuino-32 ESP32 WiFi & Bluetooth Development Board
-* KY-005 IR Transmitter Module
-* 38kHz IR Receiver Module
-* 3.7V 950mAh LiPo Battery
-* MCP73831T LiPo Charging Module
-* 2-Axis Joystick Module
-* Mini Illuminated Power Switch
+---
 
-### Passive Components
+# Hardware
 
-* 100KΩ 1/4W Resistor
-* 1KΩ 2W Resistor
+- ESPDuino-32
+- (Compatible with ESP32-WROOM DevKit without changing the code)
+- SSD1306 OLED Display
+- KY-005 IR Transmitter
+- 38kHz IR Receiver
+- MCP73831 LiPo Charging Module
+- 950mAh LiPo Battery
+- Analog Joystick
+- Power Switch
 
-### Wiring Components
+---
 
-* Male-Male / Female-Female Jumper Wires
-* Female-Male Jumper Wires
+# Compatibility
 
-For the complete hardware list, see:
+The firmware was originally developed using the ESPDuino-32 board.
 
-`Hardware/parts-list.md`
+Since ESPDuino internally uses the ESP32-WROOM module, the exact same firmware also works on a regular ESP32-WROOM DevKit.
 
-## Software
+No code changes are required.
 
-PocketRemote is programmed using:
+---
 
-* Arduino IDE
-* ESP32 Arduino Core
+# Memory
 
+Maximum saved buttons:
 
-## How It Works
+20
 
-1. # Hardware Compatibility Note
+Maximum raw IR length:
 
-## ESP32 WROOM 32 and ESPDuino-32 Selection
+300 samples
 
-In the provided circuit diagram, the **ESP32 WROOM 32 development board** is used as the main controller representation.
+---
 
-This choice was made because ESPDuino-32 is currently not available as a standard component in many circuit design applications, including Fritzing. Therefore, ESP32 WROOM 32 was selected for the schematic to provide a clear and widely recognized representation of the ESP32 platform.
+# User Interface
 
-However, the actual recommended hardware for this project is the **ESPDuino-32 development board**.
+Main Menu
 
-The reason for this recommendation is that ESPDuino-32 provides the same core ESP32 functionality while being a more affordable and accessible option for this project. It offers the required GPIO pins, processing power, and compatibility needed for the Pocket Remote system.
+- New Button
+- Buttons
+- Battery
+- Settings
 
-## Code Compatibility
+---
 
-No code modifications are required when switching between ESPDuino-32 and ESP32 WROOM 32 development boards.
+# Learning a Remote
 
-The same firmware can run on both boards because they are based on the same ESP32 architecture.
+1. Select **New Button**
+2. Enter a name.
+3. Point your remote at the receiver.
+4. Press any button.
+5. Signal is stored automatically.
 
-The following components and connections remain identical:
+---
 
-* IR Receiver connection
-* IR Transmitter connection
-* OLED display connection
-* GPIO assignments
-* Libraries and software configuration
+# Sending
 
-Therefore, users can choose either:
+1. Open Buttons.
+2. Select the saved button.
+3. Press OK.
+4. Signal is transmitted.
 
-* **ESPDuino-32** — Recommended option due to its lower cost and availability
-* **ESP32 WROOM 32 Development Board** — Fully compatible alternative
+---
 
-Both boards can run the Pocket Remote firmware without changing the source code.
+# Supported Protocols
 
-2. The ESP32 processes and stores the received IR data.
-3. The joystick is used to navigate and control functions.
+The project uses IRremoteESP8266 which supports many protocols including:
 
+- NEC
+- Sony
+- Samsung
+- LG
+- Panasonic
+- JVC
+- RC5
+- RC6
+- Sharp
+- Denon
+- and many more.
 
-## Power
+Unknown protocols can also be stored as RAW timing data.
 
-PocketRemote uses:
+---
 
-* 3.7V 1S LiPo battery
-* MCP73831T charging circuit
-* On/off power switch
+# Power
 
-The device can be charged through the built-in LiPo charging system.
+Powered by one 3.7V LiPo battery.
 
-## Future Improvements
+Charging is handled safely by the MCP73831 charging IC.
 
-Planned features:
+---
 
-* OLED display support
-* Remote profile storage
-* Better user interface
-* More IR protocol support
-* Custom PCB design
-* Smaller enclosure design
+# License
 
-## Gallery
-
-(Add project photos here)
-
-## License
-
-This project is released under the MIT License.
-
-You are free to use, modify, and share this project with proper credit.
-
-## Author
-
-Created by techpattis
+MIT License
