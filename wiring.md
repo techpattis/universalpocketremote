@@ -102,10 +102,12 @@ The ESP32 is powered from the battery, while charging is handled independently b
 
 ---
 
-## Notes
+## Notes and WARNING
 
 - All grounds must be connected together.
 - OLED uses I2C.
 - The IR transmitter and receiver operate independently.
 - The battery monitor requires the two 100kΩ resistors.
 - The firmware is compatible with both ESPDuino-32 and ESP32-WROOM boards without modification.
+- this is the schematic its Aİ generated because the components are used in this project are hard to find and We couldn't find any free schematic drawing software that contains these cards That's why I don't recommend you do this project based on this photo, but if you are going to do it, please be careful and protect yourself against the risk of getting hit by electricty.<img width="1024" height="682" alt="image" src="https://github.com/user-attachments/assets/57d609f7-dfa3-4efe-9430-f0288db51aa2" />
+
