@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Universal Pocket Remote</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#070707;
+color:white;
+overflow-x:hidden;
+}
+
+body::before{
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+background:#3b82f620;
+filter:blur(150px);
+top:-250px;
+left:-250px;
+pointer-events:none;
+}
+
+body::after{
+content:"";
+position:fixed;
+width:700px;
+height:700px;
+background:#8b5cf620;
+filter:blur(150px);
+bottom:-250px;
+right:-250px;
+pointer-events:none;
+}
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:22px 9%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(15,15,15,.45);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.05);
+z-index:999;
+}
+
+.logo{
+font-size:28px;
+font-weight:900;
+letter-spacing:1px;
+}
+
+.logo span{
+color:#60a5fa;
+}
+
+nav ul{
+display:flex;
+gap:35px;
+list-style:none;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+opacity:.8;
+font-weight:600;
+transition:.3s;
+}
+
+nav ul li a:hover{
+opacity:1;
+color:#60a5fa;
+}
+
+.github{
+padding:12px 24px;
+border-radius:50px;
+background:#2563eb;
+text-decoration:none;
+color:white;
+font-weight:700;
+transition:.3s;
+}
+
+.github:hover{
+transform:translateY(-3px);
+box-shadow:0 0 35px #2563eb;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 9%;
+gap:70px;
+}
+
+.left{
+max-width:650px;
+}
+
+.badge{
+display:inline-block;
+padding:8px 18px;
+background:#111827;
+border:1px solid rgba(255,255,255,.08);
+border-radius:40px;
+color:#60a5fa;
+margin-bottom:25px;
+font-weight:700;
+}
+
+.left h1{
+font-size:74px;
+line-height:1;
+font-weight:900;
+margin-bottom:30px;
+}
+
+.left p{
+font-size:22px;
+line-height:1.8;
+color:#b5b5b5;
+margin-bottom:40px;
+}
+
+.buttons{
+display:flex;
+gap:18px;
+flex-wrap:wrap;
+}
+
+.primary{
+background:#2563eb;
+padding:18px 34px;
+border-radius:50px;
+text-decoration:none;
+font-weight:700;
+color:white;
+transition:.3s;
+}
+
+.primary:hover{
+transform:translateY(-4px);
+box-shadow:0 0 45px #2563eb;
+}
+
+.secondary{
+padding:18px 34px;
+border-radius:50px;
+border:1px solid rgba(255,255,255,.15);
+text-decoration:none;
+color:white;
+font-weight:700;
+transition:.3s;
+}
+
+.secondary:hover{
+background:white;
+color:black;
+}
+
+.phone{
+width:330px;
+height:680px;
+background:linear-gradient(180deg,#2a2a2a,#101010);
+border-radius:45px;
+border:2px solid rgba(255,255,255,.08);
+padding:25px;
+box-shadow:0 40px 120px rgba(0,0,0,.65);
+animation:float 5s ease-in-out infinite;
+}
+
+.screen{
+height:100%;
+border-radius:28px;
+background:black;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+}
+
+.screen h2{
+font-size:30px;
+margin-bottom:20px;
+}
+
+.screen p{
+color:#888;
+text-align:center;
+padding:0 20px;
+}
+
+@keyframes float{
+50%{
+transform:translateY(-18px);
+}
+}
+
+section{
+padding:120px 9%;
+}
+
+.title{
+font-size:54px;
+font-weight:900;
+text-align:center;
+margin-bottom:70px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+gap:30px;
+}
+
+.card{
+background:#101010;
+border:1px solid rgba(255,255,255,.05);
+border-radius:25px;
+padding:35px;
+transition:.35s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:#2563eb;
+box-shadow:0 25px 80px rgba(37,99,235,.25);
+}
+
+.card h3{
+margin:18px 0;
+font-size:26px;
+}
+
+.card p{
+color:#9b9b9b;
+line-height:1.8;
+}
+
+.icon{
+font-size:50px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+Pocket<span>Remote</span>
+</div>
+
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#hardware">Hardware</a></li>
+<li><a href="#works">How It Works</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+
+<a class="github" href="https://github.com/techpattis/universalpocketremote" target="_blank">
+GitHub
+</a>
+
+</nav>
+
+<section class="hero">
+
+<div class="left">
+
+<div class="badge">
+Open Source • ESP32 • MIT License
+</div>
+
+<h1>
+Universal<br>
+Pocket Remote
+</h1>
+
+<p>
+A powerful open-source universal infrared remote powered by ESP32.
+Learn, save, organize and transmit infrared signals from almost any device using a beautiful OLED interface.
+</p>
+
+<div class="buttons">
+
+<a href="#features" class="primary">
+Explore Features
+</a>
+
+<a href="https://github.com/techpattis/universalpocketremote" target="_blank" class="secondary">
+View on GitHub
+</a>
+
+</div>
+
+</div>
+
+<div class="phone">
+
+<div class="screen">
+
+<h2>Pocket Remote</h2>
+
+<p>
+Portable<br>
+Rechargeable<br>
+Open Source
+</p>
+
+</div>
+
+</div>
+<section id="features">
+
+<h2 class="title">
+Features
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">📡</div>
+<h3>Learn IR Signals</h3>
+<p>
+Capture infrared signals from almost any remote control and save them permanently.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">💾</div>
+<h3>Store Buttons</h3>
+<p>
+Store up to 20 custom buttons with easy navigation through the OLED interface.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">📺</div>
+<h3>OLED Interface</h3>
+<p>
+Simple and intuitive graphical menu with battery information and saved buttons.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🔋</div>
+<h3>Rechargeable</h3>
+<p>
+Powered by a 3.7V Li-Po battery with safe charging using the MCP73831 controller.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🚀</div>
+<h3>ESP32 Powered</h3>
+<p>
+Fast, reliable and fully open-source firmware running on the ESP32 platform.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🌍</div>
+<h3>Open Source</h3>
+<p>
+Released under the MIT License so anyone can build, modify and improve the project.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="hardware">
+
+<h2 class="title">
+Hardware
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">🖥️</div>
+<h3>ESPDuino-32</h3>
+<p>Main development board based on ESP32.</p>
+</div>
+
+<div class="card">
+<div class="icon">📟</div>
+<h3>SSD1306 OLED</h3>
+<p>128×64 monochrome display for menus and status information.</p>
+</div>
+
+<div class="card">
+<div class="icon">📡</div>
+<h3>IR Receiver</h3>
+<p>38kHz infrared receiver for learning remote signals.</p>
+</div>
+
+<div class="card">
+<div class="icon">📤</div>
+<h3>KY-005 IR LED</h3>
+<p>Transmit saved infrared commands to your devices.</p>
+</div>
+
+<div class="card">
+<div class="icon">🎮</div>
+<h3>Joystick</h3>
+<p>Navigate through menus quickly and comfortably.</p>
+</div>
+
+<div class="card">
+<div class="icon">🔌</div>
+<h3>MCP73831 Charger</h3>
+<p>Safe charging for the built-in Li-Po battery.</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="works">
+
+<h2 class="title">
+How It Works
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">①</div>
+<h3>Learn</h3>
+<p>
+Select <b>New Button</b>, enter a name and point an IR remote at the receiver.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">②</div>
+<h3>Save</h3>
+<p>
+The signal is automatically stored in memory for future use.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">③</div>
+<h3>Transmit</h3>
+<p>
+Choose the saved button and instantly send the infrared signal.
+</p>
+</div>
+
+</div>
+
+</section>
+  <section>
+
+<h2 class="title">
+Supported Protocols
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">📺</div>
+<h3>Popular Brands</h3>
+<p>
+Supports NEC, Sony, Samsung, LG, Panasonic, JVC, RC5, RC6, Sharp, Denon and many more thanks to the IRremoteESP8266 library.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">⚡</div>
+<h3>RAW Recording</h3>
+<p>
+Unknown infrared protocols can also be recorded and replayed using RAW timing data.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">💡</div>
+<h3>Wide Compatibility</h3>
+<p>
+Works with TVs, air conditioners, LED strips, projectors, fans and many other IR-controlled devices.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2 class="title">
+Technical Specifications
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">💾</div>
+<h3>Memory</h3>
+<p>
+Maximum of <b>20 saved buttons</b> with RAW infrared data up to <b>300 samples</b>.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🔋</div>
+<h3>Battery</h3>
+<p>
+950mAh rechargeable Li-Po battery with battery percentage indicator.
+</p>
+</div>
+
+<div class="card">
+<div class="icon">🔌</div>
+<h3>Charging</h3>
+<p>
+Powered safely by the MCP73831 charging IC while remaining portable.
+</p>
+</div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<h2 class="title">
+Compatibility
+</h2>
+
+<div class="card">
+
+<h3>ESPDuino-32 & ESP32-WROOM</h3>
+
+<p style="margin-top:20px;line-height:2;color:#bdbdbd;">
+
+Pocket Remote was originally developed using the ESPDuino-32 development board.
+
+Since ESPDuino internally uses the ESP32-WROOM module, the exact same firmware also works perfectly on a standard ESP32-WROOM DevKit without changing a single line of code.
+
+</p>
+
+</div>
+
+</section>
+
+
+<section id="license">
+
+<h2 class="title">
+Open Source
+</h2>
+
+<div class="card">
+
+<h3>MIT License</h3>
+
+<p style="margin-top:20px;line-height:2;color:#bdbdbd;">
+
+Pocket Remote v1 is completely open source under the MIT License.
+
+Feel free to build, modify, improve and share the project with the community.
+
+</p>
+
+<br><br>
+
+<a href="https://github.com/techpattis/universalpocketremote"
+class="primary"
+target="_blank">
+
+View Repository
+
+</a>
+
+</div>
+
+</section>
+
+
+<footer style="padding:80px 9%;text-align:center;color:#888;border-top:1px solid rgba(255,255,255,.06);">
+
+<h2 style="font-size:34px;margin-bottom:20px;">
+Universal Pocket Remote
+</h2>
+
+<p style="max-width:700px;margin:auto;line-height:1.8;">
+
+An open-source universal infrared remote powered by ESP32.
+
+Designed to be affordable, portable and easy to build.
+
+</p>
+
+<br>
+
+<p>
+
+Made with ❤️ by <b>Hayat</b>
+
+</p>
+
+<br>
+
+<p>
+
+© 2026 Universal Pocket Remote
+
+</p>
+
+</footer>
+
+
+</body>
+</html>
+
+</section>
