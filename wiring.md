@@ -1,94 +1,111 @@
-# PocketRemote Wiring Guide
+# Wiring Guide
 
-## ESP32 Pin Configuration
+## OLED (SSD1306)
 
-| Module                 | Pin    | ESP32 GPIO |
-| ---------------------- | ------ | ---------- |
-| OLED Display           | SDA    | GPIO 21    |
-| OLED Display           | SCL    | GPIO 22    |
-| KY-005 IR Transmitter  | Signal | GPIO 25    |
-| 38kHz IR Receiver      | OUT    | GPIO 26    |
-| Joystick X Axis        | VRx    | GPIO 34    |
-| Joystick Y Axis        | VRy    | GPIO 35    |
-| Joystick Button        | SW     | GPIO 32    |
-| Battery Voltage Sensor | ADC    | GPIO 33    |
+| OLED | ESP32 |
+|------|-------|
+| VCC | 3.3V |
+| GND | GND |
+| SDA | GPIO21 |
+| SCL | GPIO22 |
 
 ---
 
-# OLED Display
+## IR Receiver
 
-SSD1306 128x64 I2C OLED:
-
-```
-OLED VCC → ESP32 3.3V
-OLED GND → ESP32 GND
-OLED SDA → GPIO 21
-OLED SCL → GPIO 22
-```
+| Receiver | ESP32 |
+|----------|-------|
+| VCC | 3.3V |
+| GND | GND |
+| OUT | GPIO26 |
 
 ---
 
-# IR Transmitter
+## KY-005 IR Transmitter
 
-KY-005:
+| KY-005 | ESP32 |
+|--------|-------|
+| Signal | GPIO25 |
+| GND | GND |
 
-```
-KY-005 VCC → ESP32 3.3V
-KY-005 GND → ESP32 GND
-KY-005 SIG → GPIO 25
-```
-
----
-
-# IR Receiver
-
-38kHz IR Receiver:
-
-```
-Receiver VCC → ESP32 3.3V
-Receiver GND → ESP32 GND
-Receiver OUT → GPIO 26
-```
+The IR LED module is powered directly by the ESP32 output pin.
 
 ---
 
-# Joystick Module
+## Analog Joystick
 
-2-Axis Joystick:
-
-```
-Joystick VCC → ESP32 3.3V
-Joystick GND → ESP32 GND
-
-VRx → GPIO 34
-VRy → GPIO 35
-SW  → GPIO 32
-```
+| Pin | ESP32 |
+|-----|-------|
+| VRx | GPIO34 |
+| VRy | GPIO35 |
+| SW | GPIO32 |
+| VCC | 3.3V |
+| GND | GND |
 
 ---
 
-# Battery Voltage Measurement
+## Battery Monitor
 
-The battery voltage is measured using a resistor divider:
+A voltage divider is used.
 
-```
-Battery +
-    |
-   100KΩ
-    |
-    +------ GPIO 33
-    |
-   100KΩ
-    |
-   GND
-```
+Battery (+)
 
-This allows the ESP32 ADC to safely measure the LiPo battery voltage.
+↓
+
+100kΩ
+
+↓
+
+GPIO33
+
+↓
+
+100kΩ
+
+↓
+
+GND
+
+This reduces battery voltage to a safe ADC level.
+
+---
+
+## LiPo Battery
+
+Battery
+
+↓
+
+Power Switch
+
+↓
+
+ESP32 VIN
+
+The charging module is connected directly to the battery.
+
+---
+
+## Charging Module
+
+USB-C
+
+↓
+
+MCP73831
+
+↓
+
+LiPo Battery
+
+The ESP32 is powered from the battery, while charging is handled independently by the charging circuit.
 
 ---
 
 ## Notes
 
-* Use 3.3V logic levels with ESP32 GPIO pins.
-* Do not connect LiPo battery directly to ESP32 3.3V pin.
-* Check polarity before connecting the battery.
+- All grounds must be connected together.
+- OLED uses I2C.
+- The IR transmitter and receiver operate independently.
+- The battery monitor requires the two 100kΩ resistors.
+- The firmware is compatible with both ESPDuino-32 and ESP32-WROOM boards without modification.
